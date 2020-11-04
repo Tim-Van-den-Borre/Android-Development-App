@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Medication_Reminder</string>
+    <string name="Add_Medication">Add Medication</string>
+    <string name="Medication_List">Your Medication list</string>
+    <string name="Medication_Name">Name</string>
+    <string name="Medication_Description">Description</string>
+    <string name="Medication_Quantity">Quantity</string>
+    <string name="Medication_Start_Date">Start date</string>
+    <string name="Medication_End_Date">End date</string>
+    <string name="Medication_Extra_Info">Extra information</string>
+    <string name="Medication_Save_Button">Save</string>
 </resources>
