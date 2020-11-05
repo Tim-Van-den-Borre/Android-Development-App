@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private Button addMedication;
+    private ListView showMedication;
     private DatabaseRepository databaseRepository;
 
     @Override
@@ -28,12 +31,16 @@ public class MainActivity extends AppCompatActivity {
 
         addMedication = findViewById(R.id.add_Medication_button);
 
+        showMedication = findViewById(R.id.show_medication);
+
         addMedication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addMedication();
             }
         });
+
+        showMedicationList();
     }
     /*
         startActivityForResult. Geraadpleegd op 4/11/2020
@@ -78,6 +85,25 @@ public class MainActivity extends AppCompatActivity {
 
             // medication in database zetten via de repository.
             databaseRepository.insertMedication(medication);
+
+            // toon de medication list.
+            showMedicationList();
         }
+    }
+
+    /*
+        Listview, voeg elementen toe. ArrayAdapter. Geraadpleegd op 5/11/2020
+        https://stackoverflow.com/questions/4540754/how-do-you-dynamically-add-elements-to-a-listview-on-android
+        https://www.tutorialspoint.com/dynamically-add-elements-in-listview-in-android
+        https://developer.android.com/reference/android/widget/ArrayAdapter
+     */
+    public void showMedicationList(){
+        List<String> medicationList = new ArrayList<>();
+        for (Medication medication : databaseRepository.getAllMedication()){
+            medicationList.add(medication.name);
+        }
+
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, medicationList);
+        showMedication.setAdapter(adapter);
     }
 }

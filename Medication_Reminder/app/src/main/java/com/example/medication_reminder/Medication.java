@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey;
  */
 @Entity(tableName = "Medication")
 public class Medication {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int id;
 
     @ColumnInfo(name = "name")

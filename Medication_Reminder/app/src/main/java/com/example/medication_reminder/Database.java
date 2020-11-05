@@ -11,8 +11,11 @@ import androidx.room.RoomDatabase;
 
     allowMainThreadQueries nodig voor database access op main thread.
     https://stackoverflow.com/questions/52999851/why-is-recommended-not-to-use-allowmainthreadqueries-for-android-room
+
+    Roomdatabase migration problems. fallbacktodestructivemigration
+    https://stackoverflow.com/questions/49629656/please-provide-a-migration-in-the-builder-or-call-fallbacktodestructivemigration
  */
-@androidx.room.Database(entities = {Medication.class}, version = 1)
+@androidx.room.Database(entities = {Medication.class}, version = 3)
 public abstract class Database extends RoomDatabase {
 
     // instantie van de medication dao
@@ -26,7 +29,9 @@ public abstract class Database extends RoomDatabase {
         if (singleton == null) {
             synchronized (Database.class) {
                 if (singleton == null) {
-                    singleton = Room.databaseBuilder(context.getApplicationContext(), Database.class, "Database").allowMainThreadQueries().build();
+                    singleton = Room.databaseBuilder(context.getApplicationContext(), Database.class, "Database")
+                            .allowMainThreadQueries().fallbackToDestructiveMigration()
+                            .build();
                 }
             }
         }
