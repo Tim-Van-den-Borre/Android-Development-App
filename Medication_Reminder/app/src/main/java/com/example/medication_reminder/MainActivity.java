@@ -106,7 +106,9 @@ public class MainActivity extends AppCompatActivity {
             medicationList.add(medication);
         }
 
-        final CustomMedicationAdapter adapter = new CustomMedicationAdapter(medicationList, getApplicationContext());
+        // adapter
+        // context mainactivity meegeven(this). Zodat we in de adapter aan de methodes kunnen van de MainActivity.
+        final CustomMedicationAdapter adapter = new CustomMedicationAdapter(medicationList, this, databaseRepository);
         showMedication.setAdapter(adapter);
     }
 }

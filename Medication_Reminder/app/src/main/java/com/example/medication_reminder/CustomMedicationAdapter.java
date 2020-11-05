@@ -1,5 +1,6 @@
 package com.example.medication_reminder;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +22,9 @@ public class CustomMedicationAdapter extends ArrayAdapter<Medication>{
     // lijst van medications
     private ArrayList<Medication> dataSet;
 
+    // instantie van repository voor adapter.
+    private DatabaseRepository repository;
+
     // context van de applicatie.
     Context context;
 
@@ -31,10 +35,11 @@ public class CustomMedicationAdapter extends ArrayAdapter<Medication>{
         Button deleteButton;
     }
 
-    public CustomMedicationAdapter(ArrayList<Medication> data, Context context) {
+    public CustomMedicationAdapter(ArrayList<Medication> data, Context context, DatabaseRepository repository) {
         super(context, R.layout.medication_list_item, data);
         this.dataSet = data;
         this.context = context;
+        this.repository = repository;
     }
 
     /*
@@ -73,10 +78,12 @@ public class CustomMedicationAdapter extends ArrayAdapter<Medication>{
         viewHolder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("delete", medication.name + "delete");
+                repository.deleteMedication(medication);
+
+                // Parsen van context naar de MainActivity zodat we aan de methode kunnen.
+                ((MainActivity)context).showMedicationList();
             }
         });
-        // Return the completed view to render on screen
         return convertView;
     }
 }
