@@ -10,4 +10,6 @@
     <string name="Medication_End_Date">Eind datum</string>
     <string name="Medication_Extra_Info">Extra informatie</string>
     <string name="Medication_Save_Button">Sla op</string>
+    <string name="Medication_Details_Button">Details</string>
+    <string name="Medication_Delete_Button">Verwijder</string>
 </resources>

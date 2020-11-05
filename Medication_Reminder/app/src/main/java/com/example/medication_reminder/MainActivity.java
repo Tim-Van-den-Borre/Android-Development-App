@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -96,14 +97,16 @@ public class MainActivity extends AppCompatActivity {
         https://stackoverflow.com/questions/4540754/how-do-you-dynamically-add-elements-to-a-listview-on-android
         https://www.tutorialspoint.com/dynamically-add-elements-in-listview-in-android
         https://developer.android.com/reference/android/widget/ArrayAdapter
+
+        Vervangen door custom adapter.
      */
     public void showMedicationList(){
-        List<String> medicationList = new ArrayList<>();
+        ArrayList<Medication> medicationList = new ArrayList<>();
         for (Medication medication : databaseRepository.getAllMedication()){
-            medicationList.add(medication.name);
+            medicationList.add(medication);
         }
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, medicationList);
+        final CustomMedicationAdapter adapter = new CustomMedicationAdapter(medicationList, getApplicationContext());
         showMedication.setAdapter(adapter);
     }
 }
