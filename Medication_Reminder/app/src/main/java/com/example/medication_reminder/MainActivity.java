@@ -11,15 +11,20 @@ import android.widget.Button;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button addMedication;
+    private DatabaseRepository databaseRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // nieuwe instantie van de repository.
+        databaseRepository = new DatabaseRepository(getApplication());
 
         addMedication = findViewById(R.id.add_Medication_button);
 
@@ -52,19 +57,27 @@ public class MainActivity extends AppCompatActivity {
 
         if(requestCode == 200 && resultCode == RESULT_OK && data != null){
 
+            // data ophalen uit de intent.
             String name = data.getStringExtra("name");
             String description = data.getStringExtra("description");
-            String quantity = data.getStringExtra("quantity");
+            int quantity = Integer.parseInt(data.getStringExtra("quantity"));
             String start_date = data.getStringExtra("start_date");
             String end_date = data.getStringExtra("end_date");
             String extra_information = data.getStringExtra("extra_information");
 
+            // logs
             Log.e("name", name);
             Log.e("description", description);
-            Log.e("quantity", quantity);
+            Log.e("quantity", quantity + "");
             Log.e("start_date", start_date);
             Log.e("end_date", end_date);
             Log.e("extra_information", extra_information);
+
+            // aanmaken van een medication.
+            Medication medication = new Medication(name, description, quantity, start_date, end_date, extra_information);
+
+            // medication in database zetten via de repository.
+            databaseRepository.insertMedication(medication);
         }
     }
 }
