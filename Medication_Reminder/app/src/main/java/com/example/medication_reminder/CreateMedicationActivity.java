@@ -27,6 +27,7 @@ public class CreateMedicationActivity extends AppCompatActivity {
         input_end_date = findViewById(R.id.input_end_date);
         input_extra_information = findViewById(R.id.input_extra_information);
 
+        // Na klikken op 'save' de Medication opslaan.
         saveMedication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,11 +35,13 @@ public class CreateMedicationActivity extends AppCompatActivity {
             }
         });
     }
-    
+    /*
+        Methode voor het opslaan van de medication in de database.
+     */
     public void saveMedication(){
         String name, description, quantity, start_date, end_date, extra_information;
 
-        // text value ophalen van alle fields.
+        // Text values ophalen van alle fields.
         name = input_name.getText().toString();
         description = input_description.getText().toString();
         quantity = input_quantity.getText().toString();
@@ -50,7 +53,7 @@ public class CreateMedicationActivity extends AppCompatActivity {
             Geef waardes terug met de intent. Geraadpleegd op 4/11/2020.
             https://www.javatpoint.com/android-startactivityforresult-example
          */
-        // aanmaken intent & waardes toevoegen.
+        // Aanmaken intent & waardes meegeven.
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("name", name);
         intent.putExtra("description", description);
@@ -59,7 +62,7 @@ public class CreateMedicationActivity extends AppCompatActivity {
         intent.putExtra("end_date", end_date);
         intent.putExtra("extra_information", extra_information);
 
-        // toevoegen result code & intent.
+        // Toevoegen result code & intent.
         setResult(RESULT_OK, intent);
 
         // Response terug sturen naar onActivityResult.

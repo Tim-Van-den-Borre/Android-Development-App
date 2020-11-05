@@ -9,16 +9,17 @@ import java.util.List;
     https://developer.android.com/codelabs/android-room-with-a-view#8
  */
 public class DatabaseRepository {
-    // instantie van de medication dao.
+    // Instantie van de medication dao. Bevat de calls naar de database.
     private MedicationDAO medicationDAO;
 
-    // constructor. Heeft een instantie nodig van de room database & van de medicationdao.
+    // Constructor.
+    // Repository heeft Room database instantie nodig & instantie van de medication dao.
     DatabaseRepository(Application application) {
         Database db = Database.getDatabase(application);
         medicationDAO = db.medicationDAO();
     }
 
-    // crud calls
+    // CRUD calls
     public List<Medication> getAllMedication(){
         return medicationDAO.getAll();
     }

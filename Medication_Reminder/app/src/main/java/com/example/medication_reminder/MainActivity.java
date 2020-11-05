@@ -27,11 +27,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // nieuwe instantie van de repository.
+        // Instantie van de repository.
         databaseRepository = new DatabaseRepository(getApplication());
 
         addMedication = findViewById(R.id.add_Medication_button);
-
         showMedication = findViewById(R.id.show_medication);
 
         addMedication.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
         https://developer.android.com/training/basics/intents/result
         https://developer.android.com/reference/android/app/Activity#startActivityForResult(android.content.Intent,%20int)
         https://stuff.mit.edu/afs/sipb/project/android/docs/training/basics/intents/result.html
-        Aanmaken van intent voor navigatie naar CreateMedicationActivity. Krijgt een intent & requestcode mee(200 voor OK).
+        Aanmaken van intent voor navigatie naar CreateMedicationActivity.
+        De intent verwacht in tegenstelling tot de gewone intent een response. Wordt opgevangen door 'onActivityResult'.
+        Krijgt een intent & requestcode mee(200 voor OK).
      */
     public void addMedication(){
         Intent intent = new Intent(this, CreateMedicationActivity.class);
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     /*
         onActivityResult. Geraadpleegd op 4/11/2020.
         https://developer.android.com/reference/android/app/Activity#onActivityResult(int,%20int,%20android.content.Intent)
-        override deze methode. Het is de response op de startActivityForResult.
+        Response op de startActivityForResult, bevat de data van de aangemaakte 'Medication'.
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(requestCode == 200 && resultCode == RESULT_OK && data != null){
 
-            // data ophalen uit de intent.
+            // Data ophalen uit de intent.
             String name = data.getStringExtra("name");
             String description = data.getStringExtra("description");
             int quantity = Integer.parseInt(data.getStringExtra("quantity"));
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             String end_date = data.getStringExtra("end_date");
             String extra_information = data.getStringExtra("extra_information");
 
-            // logs
+            // Loggen van de 'Medication' data.
             Log.e("name", name);
             Log.e("description", description);
             Log.e("quantity", quantity + "");
@@ -81,13 +82,13 @@ public class MainActivity extends AppCompatActivity {
             Log.e("end_date", end_date);
             Log.e("extra_information", extra_information);
 
-            // aanmaken van een medication.
+            // Aanmaken van een medication instantie.
             Medication medication = new Medication(name, description, quantity, start_date, end_date, extra_information);
 
-            // medication in database zetten via de repository.
+            // Medication instantie opslaan in de database via de repository.
             databaseRepository.insertMedication(medication);
 
-            // toon de medication list.
+            // Herladen van de lijst van 'Medications'.
             showMedicationList();
         }
     }
@@ -98,7 +99,8 @@ public class MainActivity extends AppCompatActivity {
         https://www.tutorialspoint.com/dynamically-add-elements-in-listview-in-android
         https://developer.android.com/reference/android/widget/ArrayAdapter
 
-        Vervangen door custom adapter.
+        Tonen van Medication items.
+        Gewone adapter vervangen door custom adapter.
      */
     public void showMedicationList(){
         ArrayList<Medication> medicationList = new ArrayList<>();
@@ -106,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
             medicationList.add(medication);
         }
 
-        // adapter
-        // context mainactivity meegeven(this). Zodat we in de adapter aan de methodes kunnen van de MainActivity.
+        // Custom adapter.
+        // Medication list, MainActivity(this) & repository worden meegegeven zodat de adapter aan de methodes kan.
         final CustomMedicationAdapter adapter = new CustomMedicationAdapter(medicationList, this, databaseRepository);
         showMedication.setAdapter(adapter);
     }

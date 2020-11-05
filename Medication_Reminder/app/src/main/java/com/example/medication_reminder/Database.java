@@ -15,22 +15,22 @@ import androidx.room.RoomDatabase;
     Roomdatabase migration problems. fallbacktodestructivemigration
     https://stackoverflow.com/questions/49629656/please-provide-a-migration-in-the-builder-or-call-fallbacktodestructivemigration
  */
-@androidx.room.Database(entities = {Medication.class}, version = 3)
+@androidx.room.Database(entities = {Medication.class}, version = 3) // Versie waarde +1 bij verandering in Dao / entity.
 public abstract class Database extends RoomDatabase {
 
-    // instantie van de medication dao
+    // Instantie van de medication dao zodat de database aan de calls kan.
     public abstract MedicationDAO medicationDAO();
 
     // 1 instance nodig van de room database voor de app -> singleton.
     private static volatile Database singleton;
 
-    // singleton aanmaken.
+    // Singleton aanmaken.
     static Database getDatabase(final Context context) {
         if (singleton == null) {
             synchronized (Database.class) {
                 if (singleton == null) {
                     singleton = Room.databaseBuilder(context.getApplicationContext(), Database.class, "Database")
-                            .allowMainThreadQueries().fallbackToDestructiveMigration()
+                            .allowMainThreadQueries().fallbackToDestructiveMigration() // Fix migration problems & database access op main thread.
                             .build();
                 }
             }
