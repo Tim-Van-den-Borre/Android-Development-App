@@ -27,15 +27,15 @@
             android:id="@+id/fragment"
             android:name="com.example.medication_reminder.DetailsMedicationFragment"
             android:layout_width="match_parent"
-            android:layout_height="678dp"
+            android:layout_height="484dp"
             tools:layout="@layout/detailsmedicationfragment" />
 
         <fragment
             android:id="@+id/fragment2"
-            android:name="com.example.medication_reminder.SubmitMedicationFragment"
+            android:name="com.example.medication_reminder.ShowMedicationFragment"
             android:layout_width="match_parent"
-            android:layout_height="46dp"
-            tools:layout="@layout/submitmedicationfragment" />
+            android:layout_height="match_parent"
+            tools:layout="@layout/showmedicationfragment" />
 
 
     </LinearLayout>
