@@ -12,4 +12,5 @@
     <string name="Medication_Save_Button">Sla op</string>
     <string name="Medication_Details_Button">Details</string>
     <string name="Medication_Delete_Button">Verwijder</string>
+    <string name="Medication_Update_Button">Pas aan</string>
 </resources>

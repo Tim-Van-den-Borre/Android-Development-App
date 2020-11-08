@@ -11,4 +11,5 @@
     <string name="Medication_Save_Button">Save</string>
     <string name="Medication_Details_Button">Details</string>
     <string name="Medication_Delete_Button">Delete</string>
+    <string name="Medication_Update_Button">Update</string>
 </resources>

@@ -90,6 +90,7 @@ public class CustomMedicationAdapter extends ArrayAdapter<Medication>{
                 repository.deleteMedication(medication);
 
                 // Parsen van context naar de MainActivity zodat we aan de methode kunnen.
+                // https://stackoverflow.com/questions/36226932/how-to-call-method-in-another-activity
                 ((MainActivity)context).showMedicationList();
             }
         });
