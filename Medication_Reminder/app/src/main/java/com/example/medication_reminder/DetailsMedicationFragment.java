@@ -1,5 +1,6 @@
 package com.example.medication_reminder;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,8 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import androidx.fragment.app.Fragment;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class DetailsMedicationFragment extends Fragment{
 
@@ -19,6 +25,10 @@ public class DetailsMedicationFragment extends Fragment{
     public int ID;
     private DetailMedicationActivity detailMedicationActivity;
     private DatabaseRepository databaseRepository;
+
+    // Aanmaken calendar voor verplicht datum te kiezen uit een data picker.
+    final Calendar start_date_calendar = Calendar.getInstance();
+    final Calendar end_date_calendar = Calendar.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,6 +57,8 @@ public class DetailsMedicationFragment extends Fragment{
         update_input_extra_information = view.findViewById(R.id.update_input_extra_information);
         update_medication_button = view.findViewById(R.id.update_medication_button);
 
+        // Alle fields de nieuwe waarde geven.
+        setTextFieldsInFragment(medication);
 
         // onclick listener.
         update_medication_button.setOnClickListener(new View.OnClickListener() {
@@ -63,11 +75,71 @@ public class DetailsMedicationFragment extends Fragment{
             }
         });
 
-        // Alle fields de nieuwe waarde geven.
-        setTextFieldsInFragment(medication);
+        update_input_start_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Datepicker tonen als je op textview klikt.
+                new DatePickerDialog(detailMedicationActivity,
+                        update_start_date,
+                        start_date_calendar.get(Calendar.YEAR),
+                        start_date_calendar.get(Calendar.MONTH),
+                        start_date_calendar.get(Calendar.DAY_OF_MONTH))
+                        .show();
+            }
+        });
+
+        update_input_end_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Datepicker tonen als je op textview klikt.
+                new DatePickerDialog(detailMedicationActivity,
+                        update_end_date,
+                        end_date_calendar.get(Calendar.YEAR),
+                        end_date_calendar.get(Calendar.MONTH),
+                        end_date_calendar.get(Calendar.DAY_OF_MONTH))
+                        .show();
+            }
+        });
 
         return view;
     }
+
+    // Invullen van datum in textview
+    DatePickerDialog.OnDateSetListener update_start_date = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            start_date_calendar.set(Calendar.YEAR, year);
+            start_date_calendar.set(Calendar.MONTH, monthOfYear);
+            start_date_calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+            // Date format kiezen & als text in textview zetten.
+            String date_format = "dd/MM/yyyy";
+            SimpleDateFormat sdf = new SimpleDateFormat(date_format, Locale.getDefault());
+            update_input_start_date.setText(sdf.format(start_date_calendar.getTime()));
+        }
+    };
+
+    /*
+        Datepicker voor textview voor start en end date. Geraadpleegd op 11/11/2020.
+        https://stackoverflow.com/questions/14933330/datepicker-how-to-popup-datepicker-when-click-on-edittext/29660148
+     */
+
+    // Invullen van datum in textview
+    DatePickerDialog.OnDateSetListener update_end_date = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            end_date_calendar.set(Calendar.YEAR, year);
+            end_date_calendar.set(Calendar.MONTH, monthOfYear);
+            end_date_calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+            // Date format kiezen & als text in textview zetten.
+            String date_format = "dd/MM/yyyy";
+            SimpleDateFormat sdf = new SimpleDateFormat(date_format, Locale.getDefault());
+
+            update_input_end_date.setText(sdf.format(end_date_calendar.getTime()));
+        }
+    };
 
     /*
         Methode voor het ophalen van de data uit de textfields.
