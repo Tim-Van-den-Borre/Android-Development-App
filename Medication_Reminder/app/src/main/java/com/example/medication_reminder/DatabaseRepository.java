@@ -28,6 +28,10 @@ public class DatabaseRepository {
         medicationDAO.insert(medication);
     }
 
+    public Medication getMedicationById(int id){
+        return medicationDAO.getMedicationById(id);
+    }
+
     public void updateMedication(Medication medication){
         medicationDAO.update(medication);
     }

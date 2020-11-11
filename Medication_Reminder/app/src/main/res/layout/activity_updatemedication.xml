@@ -27,7 +27,7 @@
             android:id="@+id/fragment"
             android:name="com.example.medication_reminder.DetailsMedicationFragment"
             android:layout_width="match_parent"
-            android:layout_height="484dp"
+            android:layout_height="444dp"
             tools:layout="@layout/detailsmedicationfragment" />
 
         <fragment

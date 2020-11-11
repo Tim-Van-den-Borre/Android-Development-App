@@ -44,4 +44,14 @@ public class Medication {
         this.end_date = end_date;
         this.extra_info = extra_info;
     }
+
+    public Medication(int id, String name, String description, int quantity, String start_date, String end_date, String extra_info) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.quantity = quantity;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.extra_info = extra_info;
+    }
 }

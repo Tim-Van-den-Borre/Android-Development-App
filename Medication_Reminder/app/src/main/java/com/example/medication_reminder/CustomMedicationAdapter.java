@@ -1,7 +1,7 @@
 package com.example.medication_reminder;
 
 import android.content.Context;
-import android.util.Log;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,7 +79,9 @@ public class CustomMedicationAdapter extends ArrayAdapter<Medication>{
         viewHolder.detailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("name", medication.name + "details");
+                Intent intent = new Intent(context, DetailMedicationActivity.class);
+                intent.putExtra("medicationID", medication.id);
+                context.startActivity(intent);
             }
         });
 

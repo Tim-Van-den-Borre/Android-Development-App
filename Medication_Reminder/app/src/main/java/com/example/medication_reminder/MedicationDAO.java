@@ -17,6 +17,9 @@ public interface MedicationDAO {
     @Query("SELECT * FROM Medication")
     List<Medication> getAll();
 
+    @Query("SELECT * FROM Medication WHERE id == :id")
+    Medication getMedicationById(int id);
+
     @Insert
     void insert(Medication Medication);
 

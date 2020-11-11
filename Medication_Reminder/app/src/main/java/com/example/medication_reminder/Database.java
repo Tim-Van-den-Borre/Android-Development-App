@@ -1,7 +1,6 @@
 package com.example.medication_reminder;
 
 import android.content.Context;
-
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
@@ -37,5 +36,4 @@ public abstract class Database extends RoomDatabase {
         }
         return singleton;
     }
-    
 }

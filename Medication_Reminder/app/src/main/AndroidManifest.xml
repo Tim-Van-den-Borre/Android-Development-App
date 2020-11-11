@@ -20,5 +20,9 @@
             android:name=".CreateMedicationActivity"
             android:parentActivityName=".MainActivity">
         </activity>
+        <activity
+            android:name=".DetailMedicationActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 </manifest>
