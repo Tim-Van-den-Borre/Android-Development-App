@@ -38,6 +38,7 @@ public class ShowSymptomsActivity extends AppCompatActivity{
         setContentView(R.layout.activity_showsymptoms);
 
         // url maken voor de api call.
+        // api url: https://www.ehealthme.com/api/v1/docs/
         URL = "https://www.ehealthme.com/api/v1/ds/" + medication_name.toLowerCase() + "/weakness";
 
         makeApiCallAsync(URL);
