@@ -4,20 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 public class ShowSymptomsActivity extends AppCompatActivity{
@@ -26,7 +22,6 @@ public class ShowSymptomsActivity extends AppCompatActivity{
     private String medication_name;
     private String URL;
 
-    // https://stackoverflow.com/questions/24399294/android-asynctask-to-make-an-http-get-request
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +61,7 @@ public class ShowSymptomsActivity extends AppCompatActivity{
                 // Verwerken van data.
                 try {
                     JSONObject object = new JSONObject(response);
-
                     JSONObject top_side_effects = object.getJSONObject("top_side_effects");
-
                     JSONArray side_effects = top_side_effects.names();
 
                     ArrayList<String> symptomList = new ArrayList<>();

@@ -7,9 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -28,7 +26,7 @@ public class CreateMedicationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createmedication);
 
-        // Id's ophalen van de input fields.
+        // Ophalen id's.
         saveMedication = findViewById(R.id.save_medication_button);
         input_name = findViewById(R.id.input_name);
         input_description = findViewById(R.id.input_description);
@@ -37,10 +35,11 @@ public class CreateMedicationActivity extends AppCompatActivity {
         input_end_date = findViewById(R.id.input_end_date);
         input_extra_information = findViewById(R.id.input_extra_information);
 
-        // Na klikken op 'save' de Medication opslaan.
+        // Listeners
         saveMedication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Na klikken op 'save' de Medication opslaan.
                 saveMedication();
             }
         });
@@ -72,45 +71,11 @@ public class CreateMedicationActivity extends AppCompatActivity {
         });
     }
 
-    // Invullen van datum in textview
-    DatePickerDialog.OnDateSetListener start_date = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            start_date_calendar.set(Calendar.YEAR, year);
-            start_date_calendar.set(Calendar.MONTH, monthOfYear);
-            start_date_calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
-            // Date format kiezen & als text in textview zetten.
-            String date_format = "dd/MM/yyyy";
-            SimpleDateFormat sdf = new SimpleDateFormat(date_format, Locale.getDefault());
-            input_start_date.setText(sdf.format(start_date_calendar.getTime()));
-        }
-    };
-
-    /*
-        Datepicker voor textview voor start en end date. Geraadpleegd op 11/11/2020.
-        https://stackoverflow.com/questions/14933330/datepicker-how-to-popup-datepicker-when-click-on-edittext/29660148
-     */
-
-    // Invullen van datum in textview
-    DatePickerDialog.OnDateSetListener end_date = new DatePickerDialog.OnDateSetListener() {
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            end_date_calendar.set(Calendar.YEAR, year);
-            end_date_calendar.set(Calendar.MONTH, monthOfYear);
-            end_date_calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
-            // Date format kiezen & als text in textview zetten.
-            String date_format = "dd/MM/yyyy";
-            SimpleDateFormat sdf = new SimpleDateFormat(date_format, Locale.getDefault());
-
-            input_end_date.setText(sdf.format(end_date_calendar.getTime()));
-        }
-    };
-
     /*
         Methode voor het opslaan van de medication in de database.
+
+        Geef waardes terug met de intent. Geraadpleegd op 4/11/2020.
+        https://www.javatpoint.com/android-startactivityforresult-example
      */
     public void saveMedication(){
         String name, description, quantity, start_date, end_date, extra_information;
@@ -123,10 +88,6 @@ public class CreateMedicationActivity extends AppCompatActivity {
         end_date = input_end_date.getText().toString();
         extra_information = input_extra_information.getText().toString();
 
-        /*
-            Geef waardes terug met de intent. Geraadpleegd op 4/11/2020.
-            https://www.javatpoint.com/android-startactivityforresult-example
-         */
         // Aanmaken intent & waardes meegeven.
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("name", name);
@@ -142,4 +103,41 @@ public class CreateMedicationActivity extends AppCompatActivity {
         // Response terug sturen naar onActivityResult.
         finish();
     }
+
+    /*
+        Datepicker voor textview voor start en end date. Geraadpleegd op 11/11/2020.
+        https://stackoverflow.com/questions/14933330/datepicker-how-to-popup-datepicker-when-click-on-edittext/29660148
+    */
+
+    // Invullen van datum in textview start_date
+    DatePickerDialog.OnDateSetListener start_date = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            start_date_calendar.set(Calendar.YEAR, year);
+            start_date_calendar.set(Calendar.MONTH, monthOfYear);
+            start_date_calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+            // Date format kiezen & als text in textview zetten.
+            String date_format = "dd/MM/yyyy";
+            SimpleDateFormat sdf = new SimpleDateFormat(date_format, Locale.getDefault());
+
+            input_start_date.setText(sdf.format(start_date_calendar.getTime()));
+        }
+    };
+
+    // Invullen van datum in textview
+    DatePickerDialog.OnDateSetListener end_date = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            end_date_calendar.set(Calendar.YEAR, year);
+            end_date_calendar.set(Calendar.MONTH, monthOfYear);
+            end_date_calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+            // Date format kiezen & als text in textview zetten.
+            String date_format = "dd/MM/yyyy";
+            SimpleDateFormat sdf = new SimpleDateFormat(date_format, Locale.getDefault());
+
+            input_end_date.setText(sdf.format(end_date_calendar.getTime()));
+        }
+    };
 }

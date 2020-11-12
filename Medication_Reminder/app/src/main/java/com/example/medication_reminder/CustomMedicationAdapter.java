@@ -11,10 +11,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 /*
-    Custom adapter. Geraadpleegd 5/11/2020
+    Custom adapter.
     Normale adapter ondersteunt gewoon 1 string.
-    Custom adapter laat toe om objecten / custom layout mee te geven
+    Custom adapter laat toe om objecten / custom layout mee te geven.
     De layout voor de items in de MainActivity is 'medication_list_item.xml'.
+
+    Custom adapter. Geraadpleegd 5/11/2020
     https://www.journaldev.com/10416/android-listview-with-custom-adapter-example-tutorial
  */
 public class CustomMedicationAdapter extends ArrayAdapter<Medication>{

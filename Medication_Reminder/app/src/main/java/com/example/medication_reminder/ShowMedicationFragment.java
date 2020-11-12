@@ -33,7 +33,7 @@ public class ShowMedicationFragment extends Fragment {
         // Medication ophalen op basis van id.
         Medication medication = databaseRepository.getMedicationById(ID);
 
-        // Ophalen van de id's.
+        // Ophalen id's.
         show_input_name = view.findViewById(R.id.show_input_name);
         show_input_description = view.findViewById(R.id.show_input_description);
         show_input_quantity = view.findViewById(R.id.show_input_quantity);

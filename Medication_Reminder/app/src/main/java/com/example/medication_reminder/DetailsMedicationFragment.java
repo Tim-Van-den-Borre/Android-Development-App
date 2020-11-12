@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import androidx.fragment.app.Fragment;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -48,7 +47,7 @@ public class DetailsMedicationFragment extends Fragment{
         // Medication ophalen op basis van id.
         Medication medication = databaseRepository.getMedicationById(ID);
 
-        // Ophalen van de id's van de input fields.
+        // Ophalen id's.
         update_input_name = view.findViewById(R.id.update_input_name);
         update_input_description = view.findViewById(R.id.update_input_description);
         update_input_quantity = view.findViewById(R.id.update_input_quantity);
@@ -60,7 +59,7 @@ public class DetailsMedicationFragment extends Fragment{
         // Alle fields de nieuwe waarde geven.
         setTextFieldsInFragment(medication);
 
-        // onclick listener.
+        // Listeners
         update_medication_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,10 +99,13 @@ public class DetailsMedicationFragment extends Fragment{
                         .show();
             }
         });
-
         return view;
     }
 
+    /*
+        Datepicker voor textview voor start en end date. Geraadpleegd op 11/11/2020.
+        https://stackoverflow.com/questions/14933330/datepicker-how-to-popup-datepicker-when-click-on-edittext/29660148
+    */
     // Invullen van datum in textview
     DatePickerDialog.OnDateSetListener update_start_date = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -118,11 +120,6 @@ public class DetailsMedicationFragment extends Fragment{
             update_input_start_date.setText(sdf.format(start_date_calendar.getTime()));
         }
     };
-
-    /*
-        Datepicker voor textview voor start en end date. Geraadpleegd op 11/11/2020.
-        https://stackoverflow.com/questions/14933330/datepicker-how-to-popup-datepicker-when-click-on-edittext/29660148
-     */
 
     // Invullen van datum in textview
     DatePickerDialog.OnDateSetListener update_end_date = new DatePickerDialog.OnDateSetListener() {

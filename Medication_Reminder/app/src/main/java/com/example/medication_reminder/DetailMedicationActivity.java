@@ -2,9 +2,12 @@ package com.example.medication_reminder;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 
+/*
+    2 fragments in 1 activity voorbeeld. Geraadpleegd op 8/11/2020
+    https://devcfgc.com/two-fragments-in-one-activity-278b5ee45ae9
+ */
 public class DetailMedicationActivity extends AppCompatActivity implements DetailsMedicationFragment.DetailsMedicationFragmentListener {
 
     // ID voor de update uit te voeren.
@@ -15,7 +18,6 @@ public class DetailMedicationActivity extends AppCompatActivity implements Detai
 
     // Instantie van de database repository.
     private DatabaseRepository databaseRepository;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,7 @@ public class DetailMedicationActivity extends AppCompatActivity implements Detai
     }
 
     /*
-        Methode voor het updaten van een medication.
+        Methode voor het updaten van een medication in de MedicationList.
      */
     @Override
     public void updateMedication(Medication medication) {
@@ -45,8 +47,3 @@ public class DetailMedicationActivity extends AppCompatActivity implements Detai
         databaseRepository.updateMedication(medication);
     }
 }
-
-/*
-    2 fragments in 1 activity voorbeeld. Geraadpleegd op 8/11/2020
-    https://devcfgc.com/two-fragments-in-one-activity-278b5ee45ae9
- */
