@@ -13,4 +13,5 @@
     <string name="Medication_Delete_Button">Delete</string>
     <string name="Medication_Update_Button">Update</string>
     <string name="Data_From_Database">Data from database:</string>
+    <string name="symptoms">Symptoms</string>
 </resources>

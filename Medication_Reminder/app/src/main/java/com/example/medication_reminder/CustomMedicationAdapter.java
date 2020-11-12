@@ -31,6 +31,7 @@ public class CustomMedicationAdapter extends ArrayAdapter<Medication>{
     // Items voor in list (krijgen nadien layout).
     private static class ViewHolder {
         TextView medicationname;
+        Button symptomButton;
         Button detailButton;
         Button deleteButton;
     }
@@ -62,6 +63,7 @@ public class CustomMedicationAdapter extends ArrayAdapter<Medication>{
 
             // Ophalen id's van elementen in medication_list_item.
             viewHolder.medicationname = (TextView)view.findViewById(R.id.Medication_Name);
+            viewHolder.symptomButton = (Button)view.findViewById(R.id.Medication_Symptoms_Button);
             viewHolder.detailButton = (Button)view.findViewById(R.id.Medication_Details_Button);
             viewHolder.deleteButton = (Button)view.findViewById(R.id.Medication_Delete_Button);
 
@@ -72,8 +74,24 @@ public class CustomMedicationAdapter extends ArrayAdapter<Medication>{
             result = view;
         }
 
+        String medicationname = "";
+        if(medication.name.length() >= 10){
+            medicationname = medication.name.substring(0, 10) + "...";
+        }else{
+            medicationname = medication.name;
+        }
         // Text van item.
-        viewHolder.medicationname.setText(medication.name);
+        viewHolder.medicationname.setText(medicationname);
+
+        // Bekijk de mogelijke symptomen van de medicatie.
+        viewHolder.symptomButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ShowSymptomsActivity.class);
+                intent.putExtra("medicationName", medication.name);
+                context.startActivity(intent);
+            }
+        });
 
         // Bekijk de details van dit item.
         viewHolder.detailButton.setOnClickListener(new View.OnClickListener() {

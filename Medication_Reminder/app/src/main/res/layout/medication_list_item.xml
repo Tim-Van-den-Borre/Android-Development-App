@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:columnCount="4"
+    android:columnCount="5"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -16,11 +16,19 @@
         android:text="" />
 
     <Button
-        android:id="@+id/Medication_Details_Button"
+        android:id="@+id/Medication_Symptoms_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_row="0"
         android:layout_column="2"
+        android:text="@string/symptoms" />
+
+    <Button
+        android:id="@+id/Medication_Details_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="0"
+        android:layout_column="3"
         android:text="@string/Medication_Details_Button" />
 
     <Button
@@ -28,6 +36,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_row="0"
-        android:layout_column="3"
+        android:layout_column="4"
         android:text="@string/Medication_Delete_Button" />
 </GridLayout>
