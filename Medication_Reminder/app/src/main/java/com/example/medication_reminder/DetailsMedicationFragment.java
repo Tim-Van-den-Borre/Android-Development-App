@@ -11,10 +11,15 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import androidx.fragment.app.Fragment;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+/*
+    2 fragments in 1 activity voorbeeld. Geraadpleegd op 8/11/2020
+    https://devcfgc.com/two-fragments-in-one-activity-278b5ee45ae9
+ */
 public class DetailsMedicationFragment extends Fragment{
 
     private EditText update_input_name, update_input_description, update_input_quantity, update_input_start_date, update_input_end_date, update_input_extra_information;
@@ -24,6 +29,8 @@ public class DetailsMedicationFragment extends Fragment{
     public int ID;
     private DetailMedicationActivity detailMedicationActivity;
     private DatabaseRepository databaseRepository;
+
+    private Button Medication_Status_Button;
 
     // Aanmaken calendar voor verplicht datum te kiezen uit een data picker.
     final Calendar start_date_calendar = Calendar.getInstance();
@@ -55,11 +62,19 @@ public class DetailsMedicationFragment extends Fragment{
         update_input_end_date = view.findViewById(R.id.update_input_end_date);
         update_input_extra_information = view.findViewById(R.id.update_input_extra_information);
         update_medication_button = view.findViewById(R.id.update_medication_button);
+        Medication_Status_Button = view.findViewById(R.id.update_status_medication_button);
 
         // Alle fields de nieuwe waarde geven.
         setTextFieldsInFragment(medication);
 
         // Listeners
+        Medication_Status_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                detailMedicationActivity.showStatusFragment();
+            }
+        });
+
         update_medication_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +85,11 @@ public class DetailsMedicationFragment extends Fragment{
                 Medication medication = new Medication(ID, name, description, Integer.parseInt(quantity), start_date, end_date, extra_information);
 
                 // Functie aanroepen van de interface (update van de medication).
-                callBack.updateMedication(medication);
+                try {
+                    callBack.updateMedication(medication);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -153,7 +172,7 @@ public class DetailsMedicationFragment extends Fragment{
 
     // interface voor het updaten van de medication.
     public interface DetailsMedicationFragmentListener {
-        void updateMedication(Medication medication);
+        void updateMedication(Medication medication) throws ParseException;
     }
 
     // controle zodat de listener altijd aangemaakt is (interface)

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -79,7 +80,15 @@ public class MainActivity extends AppCompatActivity {
             Medication medication = new Medication(name, description, quantity, start_date, end_date, extra_information);
 
             // Medication instantie opslaan in de database via de repository.
-            databaseRepository.insertMedication(medication);
+            long medicationID = databaseRepository.insertMedication(medication);
+
+            // Bij het aanmaken van een Medication wordt op basis van de dagen tussen de start / eind datum een status aangemaakt.
+            // Bijvoorbeeld: 3 pillen per dag -> 3 statusses per dag.
+            try {
+                StatusHelper.createStatuses(start_date, end_date, quantity, medicationID, databaseRepository);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
             // Herladen van de lijst van 'Medications'.
             showMedicationList();

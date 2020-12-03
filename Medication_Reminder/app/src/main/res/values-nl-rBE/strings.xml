@@ -5,14 +5,16 @@
     <string name="Medication_List">Jouw medicatie lijst</string>
     <string name="Medication_Name">Naam</string>
     <string name="Medication_Description">Beschrijving</string>
-    <string name="Medication_Quantity">Hoeveelheid</string>
+    <string name="Medication_Quantity">Hoeveelheid pillen per dag</string>
     <string name="Medication_Start_Date">Start datum</string>
     <string name="Medication_End_Date">Eind datum</string>
     <string name="Medication_Extra_Info">Extra informatie</string>
     <string name="Medication_Save_Button">Sla op</string>
     <string name="Medication_Details_Button">Details</string>
     <string name="Medication_Delete_Button">Verwijder</string>
-    <string name="Medication_Update_Button">Pas aan</string>
+    <string name="Medication_Update_Button">Pas info aan</string>
+    <string name="Medication_Status_Button">Update Status</string>
     <string name="Data_From_Database">Data van database:</string>
     <string name="symptoms">Symptomen</string>
+    <string name="close">Sluiten</string>
 </resources>

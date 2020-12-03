@@ -4,14 +4,16 @@
     <string name="Medication_List">Your Medication list</string>
     <string name="Medication_Name">Name</string>
     <string name="Medication_Description">Description</string>
-    <string name="Medication_Quantity">Quantity</string>
+    <string name="Medication_Quantity">Amount of pills per day</string>
     <string name="Medication_Start_Date">Start date</string>
     <string name="Medication_End_Date">End date</string>
     <string name="Medication_Extra_Info">Extra information</string>
     <string name="Medication_Save_Button">Save</string>
     <string name="Medication_Details_Button">Details</string>
     <string name="Medication_Delete_Button">Delete</string>
-    <string name="Medication_Update_Button">Update</string>
+    <string name="Medication_Update_Button">Update info</string>
+    <string name="Medication_Status_Button">Update Status</string>
     <string name="Data_From_Database">Data from database:</string>
     <string name="symptoms">Symptoms</string>
+    <string name="close">Close</string>
 </resources>

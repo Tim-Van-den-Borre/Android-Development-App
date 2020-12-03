@@ -3,6 +3,10 @@ package com.example.medication_reminder;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import java.text.ParseException;
 
 /*
     2 fragments in 1 activity voorbeeld. Geraadpleegd op 8/11/2020
@@ -13,8 +17,13 @@ public class DetailMedicationActivity extends AppCompatActivity implements Detai
     // ID voor de update uit te voeren.
     public int ID;
 
+    StatusMedicationFragment fragment;
+    FragmentManager fragmentManager;
+
     // Data tonen uit de database(via communicatie van de DetailsMedicationFragment).
     ShowMedicationFragment medicationFragment;
+
+    StatusMedicationFragment statusFragment;
 
     // Instantie van de database repository.
     private DatabaseRepository databaseRepository;
@@ -24,6 +33,8 @@ public class DetailMedicationActivity extends AppCompatActivity implements Detai
         super.onCreate(savedInstanceState);
 
         databaseRepository = new DatabaseRepository(getApplication());
+        fragment = new StatusMedicationFragment();
+        fragmentManager = getSupportFragmentManager();
 
         // Medication id ophalen uit de CustomAdapter.
         Intent intent = getIntent();
@@ -33,17 +44,45 @@ public class DetailMedicationActivity extends AppCompatActivity implements Detai
 
         // ShowMedicationFragment ophalen.
         medicationFragment = (ShowMedicationFragment) getSupportFragmentManager().findFragmentById(R.id.fragment2);
+
+        // StatusMedicationFragment ophalen.
+        statusFragment = (StatusMedicationFragment) getSupportFragmentManager().findFragmentById(R.id.fragment3);
     }
 
     /*
         Methode voor het updaten van een medication in de MedicationList.
      */
     @Override
-    public void updateMedication(Medication medication) {
+    public void updateMedication(Medication medication) throws ParseException {
         // Update de fields in de showMedication fragment.
         medicationFragment.setTextFieldsInFragment(medication);
 
+        databaseRepository.deleteStatus(medication.id);
+        StatusHelper.createStatuses(medication.start_date, medication.end_date, medication.quantity, medication.id, databaseRepository);
         // Update de medication in de database.
         databaseRepository.updateMedication(medication);
+    }
+
+    /*
+        Methode voor het weergeven van de statusList (fragment).
+
+        Overlay fragment. Geraadpleegd op 01/12/2020.
+        https://stackoverflow.com/questions/26300674/android-fragment-overlay-another-fragment-with-semi-transparent
+     */
+    public void showStatusFragment(){
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.add(R.id.fragment3, fragment);
+        transaction.commit();
+    }
+
+    /*
+        Methode voor het verwijderen van een fragment.
+
+        Destory fragment. Geraadpleegd op 01/12/2020.
+        https://stackoverflow.com/questions/7119203/how-to-destroy-fragment
+     */
+    public void destroyFragment(){
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.remove(fragment).commit();
     }
 }

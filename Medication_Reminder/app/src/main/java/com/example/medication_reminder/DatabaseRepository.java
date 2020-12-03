@@ -11,12 +11,14 @@ import java.util.List;
 public class DatabaseRepository {
     // Instantie van de medication dao. Bevat de calls naar de database.
     private MedicationDAO medicationDAO;
+    private StatusDAO statusDAO;
 
     // Constructor.
     // Repository heeft Room database instantie nodig & instantie van de medication dao.
     DatabaseRepository(Application application) {
         Database db = Database.getDatabase(application);
         medicationDAO = db.medicationDAO();
+        statusDAO = db.statusDAO();
     }
 
     // CRUD calls
@@ -24,8 +26,10 @@ public class DatabaseRepository {
         return medicationDAO.getAll();
     }
 
-    public void insertMedication(Medication medication){
-        medicationDAO.insert(medication);
+    public long insertMedication(Medication medication){
+        long id = 0;
+        id = medicationDAO.insert(medication);
+        return id;
     }
 
     public Medication getMedicationById(int id){
@@ -38,5 +42,21 @@ public class DatabaseRepository {
 
     public void deleteMedication(Medication medication){
         medicationDAO.delete(medication);
+    }
+
+    public List<Status> getAllStatuses(int id){
+        return statusDAO.getStatusByMedicationId(id);
+    }
+
+    public void updateStatus(Boolean b, int id){
+        statusDAO.updateStatus(b, id);
+    }
+
+    public void insertStatus(Status status){
+        statusDAO.insert(status);
+    }
+
+    public void deleteStatus(int id){
+        statusDAO.delete(id);
     }
 }

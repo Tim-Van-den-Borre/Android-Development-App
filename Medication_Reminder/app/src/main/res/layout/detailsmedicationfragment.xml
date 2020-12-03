@@ -70,8 +70,8 @@
                 android:id="@+id/update_input_start_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false"
                 android:ems="10"
+                android:focusable="false"
                 android:inputType="date" />
 
             <TextView
@@ -83,8 +83,8 @@
                 android:id="@+id/update_input_end_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false"
                 android:ems="10"
+                android:focusable="false"
                 android:inputType="date" />
 
             <TextView
@@ -99,11 +99,23 @@
                 android:ems="10"
                 android:inputType="textPersonName" />
 
-            <Button
-                android:id="@+id/update_medication_button"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/Medication_Update_Button" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/update_medication_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Medication_Update_Button" />
+
+                <Button
+                    android:id="@+id/update_status_medication_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Medication_Status_Button" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

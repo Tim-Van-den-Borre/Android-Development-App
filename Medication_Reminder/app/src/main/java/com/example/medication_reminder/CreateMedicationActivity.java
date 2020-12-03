@@ -24,6 +24,8 @@ public class CreateMedicationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Layout
         setContentView(R.layout.activity_createmedication);
 
         // Ophalen id's.
@@ -125,7 +127,7 @@ public class CreateMedicationActivity extends AppCompatActivity {
         }
     };
 
-    // Invullen van datum in textview
+    // Invullen van datum in textview end_date
     DatePickerDialog.OnDateSetListener end_date = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {

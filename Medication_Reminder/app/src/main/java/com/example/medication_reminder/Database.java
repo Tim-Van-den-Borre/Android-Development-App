@@ -14,11 +14,12 @@ import androidx.room.RoomDatabase;
     Roomdatabase migration problems. fallbacktodestructivemigration
     https://stackoverflow.com/questions/49629656/please-provide-a-migration-in-the-builder-or-call-fallbacktodestructivemigration
  */
-@androidx.room.Database(entities = {Medication.class}, version = 3) // Versie waarde +1 bij verandering in Dao / entity.
+@androidx.room.Database(entities = {Medication.class, Status.class}, version = 9) // Versie waarde +1 bij verandering in Dao / entity.
 public abstract class Database extends RoomDatabase {
 
     // Instantie van de medication dao zodat de database aan de calls kan.
     public abstract MedicationDAO medicationDAO();
+    public abstract StatusDAO statusDAO();
 
     // 1 instance nodig van de room database voor de app -> singleton.
     private static volatile Database singleton;
