@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import java.text.ParseException;
 
 /*
@@ -14,15 +13,19 @@ import java.text.ParseException;
  */
 public class DetailMedicationActivity extends AppCompatActivity implements DetailsMedicationFragment.DetailsMedicationFragmentListener {
 
-    // ID voor de update uit te voeren.
+    // Algemene ID van de medication (voor update)
     public int ID;
 
+    // Fragment
     StatusMedicationFragment fragment;
+
+    // Fragment manager
     FragmentManager fragmentManager;
 
-    // Data tonen uit de database(via communicatie van de DetailsMedicationFragment).
+    // Show fragment. Data tonen uit de database(via communicatie van de DetailsMedicationFragment).
     ShowMedicationFragment medicationFragment;
 
+    // Status fragment
     StatusMedicationFragment statusFragment;
 
     // Instantie van de database repository.
@@ -57,8 +60,12 @@ public class DetailMedicationActivity extends AppCompatActivity implements Detai
         // Update de fields in de showMedication fragment.
         medicationFragment.setTextFieldsInFragment(medication);
 
+        // Voor update van medication de statusses verwijderen.
         databaseRepository.deleteStatus(medication.id);
+
+        // Statusses opnieuw aanmaken.
         StatusHelper.createStatuses(medication.start_date, medication.end_date, medication.quantity, medication.id, databaseRepository);
+
         // Update de medication in de database.
         databaseRepository.updateMedication(medication);
     }
@@ -76,7 +83,7 @@ public class DetailMedicationActivity extends AppCompatActivity implements Detai
     }
 
     /*
-        Methode voor het verwijderen van een fragment.
+        Methode voor het verwijderen van de status fragment.
 
         Destory fragment. Geraadpleegd op 01/12/2020.
         https://stackoverflow.com/questions/7119203/how-to-destroy-fragment
