@@ -14,18 +14,24 @@ import java.util.List;
  */
 @Dao
 public interface MedicationDAO {
-    @Query("SELECT * FROM Medication")
-    List<Medication> getAll();
 
+    // Alle medications ophalen
+    @Query("SELECT * FROM Medication")
+    List<Medication> getAllMedications();
+
+    // Medication ophalen op basis van ID
     @Query("SELECT * FROM Medication WHERE id == :id")
     Medication getMedicationById(int id);
 
+    // Medication toevoegen
     @Insert
-    long insert(Medication Medication);
+    long insertMedication(Medication Medication);
 
+    // Medication aanpassen
     @Update
-    void update(Medication medication);
+    void updateMedication(Medication medication);
 
+    // Medication verwijderen
     @Delete
-    void delete(Medication medication);
+    void deleteMedication(Medication medication);
 }

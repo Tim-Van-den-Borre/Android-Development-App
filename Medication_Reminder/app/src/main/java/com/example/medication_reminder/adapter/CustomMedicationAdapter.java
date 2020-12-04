@@ -115,7 +115,7 @@ public class CustomMedicationAdapter extends ArrayAdapter<Medication>{
         viewHolder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                repository.deleteStatus(medication.id);
+                repository.deleteStatusById(medication.id);
                 repository.deleteMedication(medication);
 
                 // Parsen van context naar de MainActivity zodat we aan de methode kunnen.

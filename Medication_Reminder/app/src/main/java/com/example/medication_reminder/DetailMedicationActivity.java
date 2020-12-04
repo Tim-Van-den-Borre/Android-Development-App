@@ -65,7 +65,7 @@ public class DetailMedicationActivity extends AppCompatActivity implements Detai
         medicationFragment.setTextFieldsInFragment(medication);
 
         // Voor update van medication de statusses verwijderen.
-        databaseRepository.deleteStatus(medication.id);
+        databaseRepository.deleteStatusById(medication.id);
 
         // Statusses opnieuw aanmaken.
         StatusHelper.createStatuses(medication.start_date, medication.end_date, medication.quantity, medication.id, databaseRepository);

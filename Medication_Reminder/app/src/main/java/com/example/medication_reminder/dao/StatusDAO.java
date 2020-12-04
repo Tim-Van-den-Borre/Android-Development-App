@@ -13,15 +13,19 @@ import java.util.List;
 @Dao
 public interface StatusDAO {
 
+    // Alle statussen ophalen op basis van een medication ID
     @Query("SELECT * FROM Status WHERE medicationID == :medicationID")
     List<Status> getStatusByMedicationId(int medicationID);
 
+    // Status aanpassen -> Checked, niet checkedS
     @Query("UPDATE Status SET checked = :checkbox WHERE id LIKE :id")
-    void updateStatus(Boolean checkbox, int id);
+    void updateStatusById(Boolean checkbox, int id);
 
+    // Toevoegen van een status
     @Insert
-    void insert(Status status);
+    void insertStatus(Status status);
 
+    // Verwijderen van een status
     @Query("DELETE FROM Status WHERE medicationID LIKE :id")
-    void delete(int id);
+    void deleteStatusById(int id);
 }

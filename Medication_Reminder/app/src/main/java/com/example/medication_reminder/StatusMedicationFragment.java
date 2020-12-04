@@ -67,7 +67,7 @@ public class StatusMedicationFragment extends Fragment {
  */
     public void showStatusList(){
         ArrayList<Status> statusList = new ArrayList<>();
-        for (Status status : databaseRepository.getAllStatuses(ID)){
+        for (Status status : databaseRepository.getStatusByMedicationId(ID)){
             statusList.add(status);
         }
 

@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void showMedicationList(){
         ArrayList<Medication> medicationList = new ArrayList<>();
-        for (Medication medication : databaseRepository.getAllMedication()){
+        for (Medication medication : databaseRepository.getAllMedications()){
             medicationList.add(medication);
         }
 

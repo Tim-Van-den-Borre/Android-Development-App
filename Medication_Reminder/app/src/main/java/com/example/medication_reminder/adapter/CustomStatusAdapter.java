@@ -84,7 +84,7 @@ public class CustomStatusAdapter extends ArrayAdapter<Status> {
         viewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                repository.updateStatus(isChecked, status.id);
+                repository.updateStatusById(isChecked, status.id);
             }
         });
         return view;
