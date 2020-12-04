@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+import com.example.medication_reminder.database.DatabaseRepository;
+import com.example.medication_reminder.entity.Medication;
 
 public class ShowMedicationFragment extends Fragment {
 

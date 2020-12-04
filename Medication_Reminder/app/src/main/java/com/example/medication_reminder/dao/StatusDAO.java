@@ -1,8 +1,9 @@
-package com.example.medication_reminder;
+package com.example.medication_reminder.dao;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import com.example.medication_reminder.entity.Status;
 import java.util.List;
 
 /*

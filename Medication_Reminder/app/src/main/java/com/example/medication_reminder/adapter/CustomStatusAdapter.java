@@ -1,4 +1,4 @@
-package com.example.medication_reminder;
+package com.example.medication_reminder.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,10 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import com.example.medication_reminder.R;
+import com.example.medication_reminder.entity.Status;
+import com.example.medication_reminder.database.DatabaseRepository;
+
 import java.util.ArrayList;
 
 /*

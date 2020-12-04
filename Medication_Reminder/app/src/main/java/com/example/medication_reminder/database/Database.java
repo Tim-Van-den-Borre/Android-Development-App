@@ -1,8 +1,12 @@
-package com.example.medication_reminder;
+package com.example.medication_reminder.database;
 
 import android.content.Context;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import com.example.medication_reminder.entity.Medication;
+import com.example.medication_reminder.dao.MedicationDAO;
+import com.example.medication_reminder.entity.Status;
+import com.example.medication_reminder.dao.StatusDAO;
 
 /*
     Room database singleton. Geraadpleegd op 5/11/2020.

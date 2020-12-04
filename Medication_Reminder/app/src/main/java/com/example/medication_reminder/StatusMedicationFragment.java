@@ -7,6 +7,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import androidx.fragment.app.Fragment;
+import com.example.medication_reminder.adapter.CustomStatusAdapter;
+import com.example.medication_reminder.database.DatabaseRepository;
+import com.example.medication_reminder.entity.Medication;
+import com.example.medication_reminder.entity.Status;
+
 import java.util.ArrayList;
 
 public class StatusMedicationFragment extends Fragment {

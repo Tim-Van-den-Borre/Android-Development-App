@@ -5,6 +5,8 @@ import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.example.medication_reminder.entity.Medication;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -22,22 +24,5 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.medication_reminder", appContext.getPackageName());
-    }
-
-    @Test
-    public void createMedication(){
-        int id, quantity;
-        String name, description, start_date, end_date, extra_info;
-
-        id = 1;
-        name = "Dafalgan";
-        description = "Pijnstiller";
-        start_date = "12/11/2020";
-        end_date = "22/11/2020";
-        quantity = 30;
-        extra_info = "Nothing to mention.";
-        Medication medication = new Medication(id, name, description, quantity, start_date, end_date, extra_info);
-
-        assertEquals("Dafalgan", medication.name);
     }
 }

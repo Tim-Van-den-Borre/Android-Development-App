@@ -1,4 +1,4 @@
-package com.example.medication_reminder;
+package com.example.medication_reminder.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

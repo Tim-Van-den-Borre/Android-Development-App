@@ -1,6 +1,11 @@
-package com.example.medication_reminder;
+package com.example.medication_reminder.database;
 
 import android.app.Application;
+
+import com.example.medication_reminder.entity.Medication;
+import com.example.medication_reminder.dao.MedicationDAO;
+import com.example.medication_reminder.entity.Status;
+import com.example.medication_reminder.dao.StatusDAO;
 
 import java.util.List;
 
@@ -15,7 +20,7 @@ public class DatabaseRepository {
 
     // Constructor.
     // Repository heeft Room database instantie nodig & instantie van de medication dao.
-    DatabaseRepository(Application application) {
+    public DatabaseRepository(Application application) {
         Database db = Database.getDatabase(application);
         medicationDAO = db.medicationDAO();
         statusDAO = db.statusDAO();
