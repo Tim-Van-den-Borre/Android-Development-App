@@ -9,7 +9,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class CreateMedicationActivity extends AppCompatActivity {
@@ -90,20 +92,49 @@ public class CreateMedicationActivity extends AppCompatActivity {
         end_date = input_end_date.getText().toString();
         extra_information = input_extra_information.getText().toString();
 
-        // Aanmaken intent & waardes meegeven.
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("name", name);
-        intent.putExtra("description", description);
-        intent.putExtra("quantity", quantity);
-        intent.putExtra("start_date", start_date);
-        intent.putExtra("end_date", end_date);
-        intent.putExtra("extra_information", extra_information);
+        if(checkInput()){
 
-        // Toevoegen result code & intent.
-        setResult(RESULT_OK, intent);
+            // Aanmaken intent & waardes meegeven.
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("name", name);
+            intent.putExtra("description", description);
+            intent.putExtra("quantity", quantity);
+            intent.putExtra("start_date", start_date);
+            intent.putExtra("end_date", end_date);
+            intent.putExtra("extra_information", extra_information);
 
-        // Response terug sturen naar onActivityResult.
-        finish();
+            // Toevoegen result code & intent.
+            setResult(RESULT_OK, intent);
+
+            // Response terug sturen naar onActivityResult.
+            finish();
+        }
+    }
+
+    /*
+        Methode voor het controleren van input fields.
+        Controleer of de input van de fields leeg is -> Error message. Geraadpleegd op 06/12/2020
+        https://stackoverflow.com/questions/18225365/show-error-on-the-tip-of-the-edit-text-android
+     */
+    public boolean checkInput(){
+        boolean check = true;
+        List<EditText> list = new ArrayList<>();
+
+        list.add(input_name);
+        list.add(input_description);
+        list.add(input_quantity);
+        list.add(input_start_date);
+        list.add(input_end_date);
+        list.add(input_extra_information);
+
+        for (EditText item : list) {
+            if(item.getText().toString().trim().isEmpty() || item.getText().toString().trim().length() == 0 || item.getText().toString().trim().equals(""))
+            {
+                item.setError("This field can not be blank");
+                check = false;
+            }
+        }
+        return check;
     }
 
     /*
