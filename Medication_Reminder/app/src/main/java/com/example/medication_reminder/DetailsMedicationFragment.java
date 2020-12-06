@@ -15,7 +15,9 @@ import com.example.medication_reminder.database.DatabaseRepository;
 import com.example.medication_reminder.entity.Medication;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 /*
@@ -42,7 +44,7 @@ public class DetailsMedicationFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Linken van de view met een bepaalde layout(fragment aparte layout geven).
-        View view = inflater.inflate(R.layout.detailsmedicationfragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_details_medication, container, false);
 
         // detailMedicationActivity oproepen voor de id van een medication & de repository op te halen.
         detailMedicationActivity = (DetailMedicationActivity)getActivity();
@@ -77,24 +79,6 @@ public class DetailsMedicationFragment extends Fragment{
             }
         });
 
-        update_medication_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Data van de textfields ophalen.
-                getDataFromTextFields();
-
-                // Nieuwe medication aanmaken.
-                Medication medication = new Medication(ID, name, description, Integer.parseInt(quantity), start_date, end_date, extra_information);
-
-                // Functie aanroepen van de interface (update van de medication).
-                try {
-                    callBack.updateMedication(medication);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
         update_input_start_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,6 +105,32 @@ public class DetailsMedicationFragment extends Fragment{
             }
         });
         return view;
+    }
+
+    /*
+        Methode voor het controleren van input fields.
+        Controleer of de input van de fields leeg is -> Error message. Geraadpleegd op 06/12/2020
+        https://stackoverflow.com/questions/18225365/show-error-on-the-tip-of-the-edit-text-android
+    */
+    public boolean checkInput(){
+        boolean check = true;
+        List<EditText> list = new ArrayList<>();
+
+        list.add(update_input_name);
+        list.add(update_input_description);
+        list.add(update_input_quantity);
+        list.add(update_input_start_date);
+        list.add(update_input_end_date);
+        list.add(update_input_extra_information);
+
+        for (EditText item : list) {
+            if(item.getText().toString().trim().isEmpty() || item.getText().toString().trim().length() == 0 || item.getText().toString().trim().equals(""))
+            {
+                item.setError("This field can not be blank");
+                check = false;
+            }
+        }
+        return check;
     }
 
     /*
@@ -199,5 +209,22 @@ public class DetailsMedicationFragment extends Fragment{
         update_input_start_date.setText(medication.start_date);
         update_input_end_date.setText(medication.end_date);
         update_input_extra_information.setText(medication.extra_info);
+    }
+
+    public void saveMedication(){
+        // Data van de textfields ophalen.
+        getDataFromTextFields();
+
+        // Functie aanroepen van de interface (update van de medication).
+        if(checkInput()){
+            // Nieuwe medication aanmaken.
+            Medication medication = new Medication(ID, name, description, Integer.parseInt(quantity), start_date, end_date, extra_information);
+            try {
+                callBack.updateMedication(medication);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }

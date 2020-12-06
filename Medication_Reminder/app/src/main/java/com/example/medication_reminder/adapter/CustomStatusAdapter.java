@@ -41,7 +41,7 @@ public class CustomStatusAdapter extends ArrayAdapter<Status> {
     }
 
     public CustomStatusAdapter(ArrayList<Status> data, Context context, DatabaseRepository repository) {
-        super(context, R.layout.status_list_item, data);
+        super(context, R.layout.list_item_status, data);
         this.statuslist = data;
         this.context = context;
         this.repository = repository;
@@ -63,7 +63,7 @@ public class CustomStatusAdapter extends ArrayAdapter<Status> {
             // Nieuw item -> viewHolder.
             viewHolder = new CustomStatusAdapter.ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            view = inflater.inflate(R.layout.status_list_item, parent, false);
+            view = inflater.inflate(R.layout.list_item_status, parent, false);
 
             // Ophalen id's van elementen in status_list_item.
             viewHolder.date = (TextView)view.findViewById(R.id.Status_Date);

@@ -3,6 +3,8 @@ package com.example.medication_reminder;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -28,7 +30,7 @@ public class CreateMedicationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Layout
-        setContentView(R.layout.activity_createmedication);
+        setContentView(R.layout.activity_create_medication);
 
         // Ophalen id's.
         saveMedication = findViewById(R.id.save_medication_button);
@@ -40,14 +42,6 @@ public class CreateMedicationActivity extends AppCompatActivity {
         input_extra_information = findViewById(R.id.input_extra_information);
 
         // Listeners
-        saveMedication.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Na klikken op 'save' de Medication opslaan.
-                saveMedication();
-            }
-        });
-
         input_start_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +67,28 @@ public class CreateMedicationActivity extends AppCompatActivity {
                         .show();
             }
         });
+    }
+
+    // Zet de save knop in de naviagation bar
+    // https://stackoverflow.com/questions/38158953/how-to-create-button-in-action-bar-in-android
+
+    // Het juiste menu wordt gekozen en de buttons worden er aan toegevoegd.
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_create_medication, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        // Sla de medicatie op via het 'save' icoon.
+        if (id == R.id.save_medication_button) {
+            saveMedication();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /*

@@ -11,12 +11,14 @@ import com.example.medication_reminder.adapter.CustomMedicationAdapter;
 import com.example.medication_reminder.database.DatabaseRepository;
 import com.example.medication_reminder.entity.Medication;
 import com.example.medication_reminder.helper.StatusHelper;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button addMedication;
+    private FloatingActionButton addMedication;
     private ListView showMedication;
     private DatabaseRepository databaseRepository;
 

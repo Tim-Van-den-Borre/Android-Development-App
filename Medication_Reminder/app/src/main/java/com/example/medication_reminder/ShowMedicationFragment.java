@@ -21,7 +21,7 @@ public class ShowMedicationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Linken van de view met een bepaalde layout(fragment aparte layout geven).
-        View view = inflater.inflate(R.layout.showmedicationfragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_show_medication, container, false);
 
         // detailMedicationActivity oproepen voor de id van een medication & de repository op te halen.
         detailMedicationActivity = (DetailMedicationActivity)getActivity();

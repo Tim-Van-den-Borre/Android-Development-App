@@ -105,12 +105,6 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/update_medication_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/Medication_Update_Button" />
-
-                <Button
                     android:id="@+id/update_status_medication_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

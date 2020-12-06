@@ -25,7 +25,7 @@ public class StatusMedicationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Linken van de view met een bepaalde layout(fragment aparte layout geven).
-        View view = inflater.inflate(R.layout.statusmedicationfragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_show_status, container, false);
 
         // detailMedicationActivity oproepen voor de id van een medication & de repository op te halen.
         detailMedicationActivity = (DetailMedicationActivity)getActivity();
@@ -49,7 +49,7 @@ public class StatusMedicationFragment extends Fragment {
         close_fragment3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                detailMedicationActivity.destroyFragment();
+                detailMedicationActivity.destroyStatusFragment();
             }
         });
 

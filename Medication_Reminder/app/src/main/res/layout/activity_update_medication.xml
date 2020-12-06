@@ -28,19 +28,23 @@
             android:name="com.example.medication_reminder.DetailsMedicationFragment"
             android:layout_width="match_parent"
             android:layout_height="444dp"
-            tools:layout="@layout/detailsmedicationfragment" />
+            tools:layout="@layout/fragment_details_medication" />
 
         <fragment
             android:id="@+id/fragment2"
             android:name="com.example.medication_reminder.ShowMedicationFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout="@layout/showmedicationfragment" />
+            tools:layout="@layout/fragment_show_medication" />
 
     </LinearLayout>
 
     <FrameLayout
         android:id="@+id/fragment3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <FrameLayout
+        android:id="@+id/fragment4"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

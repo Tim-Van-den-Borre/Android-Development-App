@@ -6,13 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.TextView;
 import com.example.medication_reminder.DetailMedicationActivity;
-import com.example.medication_reminder.MainActivity;
 import com.example.medication_reminder.entity.Medication;
 import com.example.medication_reminder.R;
-import com.example.medication_reminder.ShowSymptomsActivity;
 import com.example.medication_reminder.database.DatabaseRepository;
 
 import java.util.ArrayList;
@@ -39,13 +37,11 @@ public class CustomMedicationAdapter extends ArrayAdapter<Medication>{
     // Items voor in list (krijgen nadien layout).
     private static class ViewHolder {
         TextView medicationname;
-        Button symptomButton;
-        Button detailButton;
-        Button deleteButton;
+        GridLayout Medication_item;
     }
 
     public CustomMedicationAdapter(ArrayList<Medication> data, Context context, DatabaseRepository repository) {
-        super(context, R.layout.medication_list_item, data);
+        super(context, R.layout.list_item_medication, data);
         this.medicationlist = data;
         this.context = context;
         this.repository = repository;
@@ -67,13 +63,11 @@ public class CustomMedicationAdapter extends ArrayAdapter<Medication>{
             // Nieuw item -> viewHolder.
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            view = inflater.inflate(R.layout.medication_list_item, parent, false);
+            view = inflater.inflate(R.layout.list_item_medication, parent, false);
 
             // Ophalen id's van elementen in medication_list_item.
             viewHolder.medicationname = (TextView)view.findViewById(R.id.Medication_Name);
-            viewHolder.symptomButton = (Button)view.findViewById(R.id.Medication_Symptoms_Button);
-            viewHolder.detailButton = (Button)view.findViewById(R.id.Medication_Details_Button);
-            viewHolder.deleteButton = (Button)view.findViewById(R.id.Medication_Delete_Button);
+            viewHolder.Medication_item = (GridLayout) view.findViewById(R.id.Medication_item);
 
             result = view;
             view.setTag(viewHolder);
@@ -83,44 +77,21 @@ public class CustomMedicationAdapter extends ArrayAdapter<Medication>{
         }
 
         String medicationname = "";
-        if(medication.name.length() >= 10){
-            medicationname = medication.name.substring(0, 10) + "...";
+        if(medication.name.length() >= 30){
+            medicationname = medication.name.substring(0, 30) + "...";
         }else{
             medicationname = medication.name;
         }
         // Text van item.
         viewHolder.medicationname.setText(medicationname);
 
-        // Bekijk de mogelijke symptomen van de medicatie.
-        viewHolder.symptomButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ShowSymptomsActivity.class);
-                intent.putExtra("medicationName", medication.name);
-                context.startActivity(intent);
-            }
-        });
-
         // Bekijk de details van dit item.
-        viewHolder.detailButton.setOnClickListener(new View.OnClickListener() {
+        viewHolder.Medication_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailMedicationActivity.class);
                 intent.putExtra("medicationID", medication.id);
                 context.startActivity(intent);
-            }
-        });
-
-        // Verwijder het item uit de lijst van medications.
-        viewHolder.deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                repository.deleteStatusById(medication.id);
-                repository.deleteMedication(medication);
-
-                // Parsen van context naar de MainActivity zodat we aan de methode kunnen.
-                // https://stackoverflow.com/questions/36226932/how-to-call-method-in-another-activity
-                ((MainActivity)context).showMedicationList();
             }
         });
         return view;

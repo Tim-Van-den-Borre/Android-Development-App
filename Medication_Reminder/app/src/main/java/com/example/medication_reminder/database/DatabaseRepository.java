@@ -50,6 +50,10 @@ public class DatabaseRepository {
         medicationDAO.deleteMedication(medication);
     }
 
+    public void deleteMedicationById(int id){
+        medicationDAO.deleteMedicationById(id);
+    }
+
     // CRUD calls status
     public List<Status> getStatusByMedicationId(int id){
         return statusDAO.getStatusByMedicationId(id);

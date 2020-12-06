@@ -34,4 +34,8 @@ public interface MedicationDAO {
     // Medication verwijderen
     @Delete
     void deleteMedication(Medication medication);
+
+    // Verwijderen van een medication op basis van id.
+    @Query("DELETE FROM Medication WHERE id LIKE :id")
+    void deleteMedicationById(int id);
 }
