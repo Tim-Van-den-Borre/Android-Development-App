@@ -13,6 +13,8 @@ import android.widget.EditText;
 import androidx.fragment.app.Fragment;
 import com.example.medication_reminder.database.DatabaseRepository;
 import com.example.medication_reminder.entity.Medication;
+import com.example.medication_reminder.helper.FragmentListener;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ public class DetailsMedicationFragment extends Fragment{
 
     private EditText update_input_name, update_input_description, update_input_quantity, update_input_start_date, update_input_end_date, update_input_extra_information;
     private Button update_medication_button;
-    private DetailsMedicationFragmentListener callBack;
+    private FragmentListener callBack;
     private String name, description, quantity, start_date, end_date, extra_information;
     public int ID;
     private DetailMedicationActivity detailMedicationActivity;
@@ -50,7 +52,7 @@ public class DetailsMedicationFragment extends Fragment{
         detailMedicationActivity = (DetailMedicationActivity)getActivity();
 
         // ID ophalen van de activity
-        ID = detailMedicationActivity.ID;
+        ID = callBack.getMedicationId();
 
         // repository ophalen van de activity
         databaseRepository = new DatabaseRepository(detailMedicationActivity.getApplication());
@@ -182,18 +184,13 @@ public class DetailsMedicationFragment extends Fragment{
         extra_information = update_input_extra_information.getText().toString();
     }
 
-    // interface voor het updaten van de medication.
-    public interface DetailsMedicationFragmentListener {
-        void updateMedication(Medication medication) throws ParseException;
-    }
-
     // controle zodat de listener altijd aangemaakt is (interface)
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
         try{
-            callBack = (DetailsMedicationFragmentListener)context;
+            callBack = (FragmentListener)context;
         }catch (ClassCastException e){
             Log.e("Error", e.getMessage());
         }

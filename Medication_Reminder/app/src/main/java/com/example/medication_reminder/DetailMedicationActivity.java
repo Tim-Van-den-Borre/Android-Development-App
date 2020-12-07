@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.example.medication_reminder.database.DatabaseRepository;
 import com.example.medication_reminder.entity.Medication;
+import com.example.medication_reminder.helper.FragmentListener;
 import com.example.medication_reminder.helper.StatusHelper;
 
 import java.text.ParseException;
@@ -18,10 +19,10 @@ import java.text.ParseException;
     2 fragments in 1 activity voorbeeld. Geraadpleegd op 8/11/2020
     https://devcfgc.com/two-fragments-in-one-activity-278b5ee45ae9
  */
-public class DetailMedicationActivity extends AppCompatActivity implements DetailsMedicationFragment.DetailsMedicationFragmentListener {
+public class DetailMedicationActivity extends AppCompatActivity implements FragmentListener {
 
     // Algemene ID van de medication (voor update)
-    public int ID;
+    private int ID;
 
     // Fragment
     StatusMedicationFragment fragment3;
@@ -122,6 +123,11 @@ public class DetailMedicationActivity extends AppCompatActivity implements Detai
 
         // Update de medication in de database.
         databaseRepository.updateMedication(medication);
+    }
+
+    @Override
+    public int getMedicationId() {
+        return ID;
     }
 
     /*

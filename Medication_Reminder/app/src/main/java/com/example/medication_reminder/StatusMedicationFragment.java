@@ -1,6 +1,8 @@
 package com.example.medication_reminder;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import com.example.medication_reminder.adapter.CustomStatusAdapter;
 import com.example.medication_reminder.database.DatabaseRepository;
 import com.example.medication_reminder.entity.Medication;
 import com.example.medication_reminder.entity.Status;
+import com.example.medication_reminder.helper.FragmentListener;
 
 import java.util.ArrayList;
 
@@ -20,6 +23,7 @@ public class StatusMedicationFragment extends Fragment {
     private Button close_fragment3;
     private DetailMedicationActivity detailMedicationActivity;
     private DatabaseRepository databaseRepository;
+    private FragmentListener callBack;
     public int ID;
 
     @Override
@@ -31,7 +35,7 @@ public class StatusMedicationFragment extends Fragment {
         detailMedicationActivity = (DetailMedicationActivity)getActivity();
 
         // ID ophalen van de activity
-        ID = detailMedicationActivity.ID;
+        ID = callBack.getMedicationId();
 
         // repository ophalen van de activity
         databaseRepository = new DatabaseRepository(detailMedicationActivity.getApplication());
@@ -75,5 +79,17 @@ public class StatusMedicationFragment extends Fragment {
         // Status list, detailMedicationActivity(this) & repository worden meegegeven zodat de adapter aan de methodes kan.
         final CustomStatusAdapter adapter = new CustomStatusAdapter(statusList, detailMedicationActivity, databaseRepository);
         showStatuses.setAdapter(adapter);
+    }
+
+    // controle zodat de listener altijd aangemaakt is (interface)
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try{
+            callBack = (FragmentListener)context;
+        }catch (ClassCastException e){
+            Log.e("Error", e.getMessage());
+        }
     }
 }

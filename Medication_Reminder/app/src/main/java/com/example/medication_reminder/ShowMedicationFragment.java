@@ -1,19 +1,27 @@
 package com.example.medication_reminder;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.example.medication_reminder.database.DatabaseRepository;
 import com.example.medication_reminder.entity.Medication;
+import com.example.medication_reminder.helper.FragmentListener;
+
+import java.text.ParseException;
 
 public class ShowMedicationFragment extends Fragment {
 
     private TextView show_input_name, show_input_description, show_input_quantity, show_input_start_date, show_input_end_date, show_input_extra_information;
     private String name, description, quantity, start_date, end_date, extra_information;
     private DatabaseRepository databaseRepository;
+    private FragmentListener callBack;
     private int ID;
     private DetailMedicationActivity detailMedicationActivity;
 
@@ -27,7 +35,7 @@ public class ShowMedicationFragment extends Fragment {
         detailMedicationActivity = (DetailMedicationActivity)getActivity();
 
         // ID ophalen van de activity
-        ID = detailMedicationActivity.ID;
+        ID = callBack.getMedicationId();
 
         // repository ophalen van de activity
         databaseRepository = new DatabaseRepository(detailMedicationActivity.getApplication());
@@ -57,10 +65,22 @@ public class ShowMedicationFragment extends Fragment {
         return view;
     }
 
+    // controle zodat de listener altijd aangemaakt is (interface)
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try{
+            callBack = (FragmentListener) context;
+        }catch (ClassCastException e){
+            Log.e("Error", e.getMessage());
+        }
+    }
+
     /*
-        String resource ophalen via naam. Geraadpleegd op 11/11/2020
-        https://stackoverflow.com/questions/7493287/android-how-do-i-get-string-from-resources-using-its-name
-     */
+            String resource ophalen via naam. Geraadpleegd op 11/11/2020
+            https://stackoverflow.com/questions/7493287/android-how-do-i-get-string-from-resources-using-its-name
+    */
     public void setTextFieldsInFragment(Medication medication){
         show_input_name.setText(getResources().getString(R.string.Medication_Name) + ": " + medication.name);
         show_input_description.setText(getResources().getString(R.string.Medication_Description) + ": " + medication.description);
