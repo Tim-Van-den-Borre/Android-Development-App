@@ -7,14 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.example.medication_reminder.database.DatabaseRepository;
 import com.example.medication_reminder.entity.Medication;
 import com.example.medication_reminder.helper.FragmentListener;
-
-import java.text.ParseException;
 
 public class ShowMedicationFragment extends Fragment {
 
@@ -78,8 +74,8 @@ public class ShowMedicationFragment extends Fragment {
     }
 
     /*
-            String resource ophalen via naam. Geraadpleegd op 11/11/2020
-            https://stackoverflow.com/questions/7493287/android-how-do-i-get-string-from-resources-using-its-name
+        String resource ophalen via naam. Geraadpleegd op 11/11/2020
+        https://stackoverflow.com/questions/7493287/android-how-do-i-get-string-from-resources-using-its-name
     */
     public void setTextFieldsInFragment(Medication medication){
         show_input_name.setText(getResources().getString(R.string.Medication_Name) + ": " + medication.name);

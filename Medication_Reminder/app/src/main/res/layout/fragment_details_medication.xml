@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
@@ -19,53 +17,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Medication_Name" />
-
             <EditText
                 android:id="@+id/update_input_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Medication_Description" />
-
             <EditText
                 android:id="@+id/update_input_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Medication_Quantity" />
-
             <EditText
                 android:id="@+id/update_input_quantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Medication_Start_Date" />
-
             <EditText
                 android:id="@+id/update_input_start_date"
                 android:layout_width="match_parent"
@@ -73,12 +62,10 @@
                 android:ems="10"
                 android:focusable="false"
                 android:inputType="date" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Medication_End_Date" />
-
             <EditText
                 android:id="@+id/update_input_end_date"
                 android:layout_width="match_parent"
@@ -86,24 +73,20 @@
                 android:ems="10"
                 android:focusable="false"
                 android:inputType="date" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Medication_Extra_Info" />
-
             <EditText
                 android:id="@+id/update_input_extra_information"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
                 <Button
                     android:id="@+id/update_status_medication_button"
                     android:layout_width="wrap_content"

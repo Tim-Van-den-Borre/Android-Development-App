@@ -19,7 +19,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.medication_reminder.database.DatabaseRepository;
 import com.example.medication_reminder.entity.Medication;
 import com.example.medication_reminder.helper.FragmentListener;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

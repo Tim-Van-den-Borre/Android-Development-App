@@ -28,8 +28,6 @@ public class CreateMedicationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Layout
         setContentView(R.layout.activity_create_medication);
 
         // Ophalen id's.
@@ -69,16 +67,17 @@ public class CreateMedicationActivity extends AppCompatActivity {
         });
     }
 
-    // Zet de save knop in de naviagation bar
-    // https://stackoverflow.com/questions/38158953/how-to-create-button-in-action-bar-in-android
+    /*
+        Methodes voor het weergeven van de 'Buttons' in de navigation bar via het juiste menu.
 
-    // Het juiste menu wordt gekozen en de buttons worden er aan toegevoegd.
+        Aanmaken buttons in navigation bar. Geraadpleegd op 6/12/2020.
+        https://stackoverflow.com/questions/38158953/how-to-create-button-in-action-bar-in-android
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_create_medication, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -129,6 +128,7 @@ public class CreateMedicationActivity extends AppCompatActivity {
 
     /*
         Methode voor het controleren van input fields.
+
         Controleer of de input van de fields leeg is -> Error message. Geraadpleegd op 06/12/2020
         https://stackoverflow.com/questions/18225365/show-error-on-the-tip-of-the-edit-text-android
      */
@@ -155,6 +155,7 @@ public class CreateMedicationActivity extends AppCompatActivity {
 
     /*
         Datepicker voor textview voor start en end date. Geraadpleegd op 11/11/2020.
+
         https://stackoverflow.com/questions/14933330/datepicker-how-to-popup-datepicker-when-click-on-edittext/29660148
     */
 

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -12,7 +11,6 @@ import com.example.medication_reminder.database.DatabaseRepository;
 import com.example.medication_reminder.entity.Medication;
 import com.example.medication_reminder.helper.FragmentListener;
 import com.example.medication_reminder.helper.StatusHelper;
-
 import java.text.ParseException;
 
 /*
@@ -77,7 +75,6 @@ public class DetailMedicationActivity extends AppCompatActivity implements Fragm
         getMenuInflater().inflate(R.menu.menu_detail_medication, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

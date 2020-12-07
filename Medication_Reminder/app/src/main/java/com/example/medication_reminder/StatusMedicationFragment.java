@@ -14,7 +14,6 @@ import com.example.medication_reminder.database.DatabaseRepository;
 import com.example.medication_reminder.entity.Medication;
 import com.example.medication_reminder.entity.Status;
 import com.example.medication_reminder.helper.FragmentListener;
-
 import java.util.ArrayList;
 
 public class StatusMedicationFragment extends Fragment {

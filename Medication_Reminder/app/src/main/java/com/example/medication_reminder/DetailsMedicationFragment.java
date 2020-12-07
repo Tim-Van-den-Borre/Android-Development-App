@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import com.example.medication_reminder.database.DatabaseRepository;
 import com.example.medication_reminder.entity.Medication;
 import com.example.medication_reminder.helper.FragmentListener;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
